@@ -3,44 +3,52 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html>
+<html xmlns:th="http://thymeleaf.org">
 
-<head>
-    <title>To Do Application</title>
-</head>
+    <head>
+        <meta charset = "utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width = device-width, initial-scale=1">
+        <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" />
+        <title>To Do Application</title>
+    </head>
 
-<body>
+    <body>
 
-    <h1>SimpliTask : To Do application</h1>
-    <hr>
+        <h1>SimpliTask : To Do application</h1>
+        <hr>
 
-    <table >
+        <div class="container">
+            <table class="table table-bordered table-stripped" >
 
-        <thead>
-            <tr>
-                <th>Actions</th>
-                <th>Id</th>
-                <th>Description</th>
-                <th>Is complete</th>
-                <th>Created At</th>
-                <th>updated At</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each = "item : ${todoItems}">
-                <td>&nbsp;</td>
-                <td th:text="${item.id}" ></td>
-                <td th:text="${item.description}" ></td>
-                <td>
-                    <span th:if="${item.isComplete} == true" th:text="Yes"/>
-                    <span th:unless="${item.isComplete} == true" th:text="No"/>
-                </td>
-                <td th:text="${item.createdAt}" ></td>
-                <td th:text="${item.updatedAt}" ></td>
-            </tr>
-        </tbody>
-    </table>
+                <thead>
+                    <tr>
+                        <th>Actions</th>
+                        <th>Id</th>
+                        <th>Description</th>
+                        <th>Is complete</th>
+                        <th>Created At</th>
+                        <th>updated At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each = "item : ${todoItems}">
+                        <td>&nbsp;</td>
+                        <td th:text="${item.id}" ></td>
+                        <td th:text="${item.description}" ></td>
+                        <td>
+                            <span th:if="${item.isComplete} == true" th:text="Yes"/>
+                            <span th:unless="${item.isComplete} == true" th:text="No"/>
+                        </td>
+                        <td th:text="${item.createdAt}" ></td>
+                        <td th:text="${item.updatedAt}" ></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><a href="/create-todo"class="btn btn-success"><i class="bi bi-plus-square-fill"></i>Create a Todo</a></p>
+        </div>
+        <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.min.js}"></script>
 
-</body>
+    </body>
 
 </html>
