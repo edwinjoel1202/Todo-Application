@@ -4,11 +4,16 @@
  */
 package com.edwin.todo.controller;
 
+import ch.qos.logback.core.model.Model;
+import com.edwin.todo.model.todo;
 import com.edwin.todo.service.todoService;
+import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -28,11 +33,5 @@ public class HomeController {
         modelAndView.addObject("todoItems", todoService.getAll());
         
         return modelAndView;
-    }
-    
-    @GetMapping("/create-todo")
-    public String showCreateForm() {
-        return "new-todo-item";
-    }
-    
+    }   
 }
