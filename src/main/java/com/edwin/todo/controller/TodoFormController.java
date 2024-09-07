@@ -40,4 +40,30 @@ public class TodoFormController {
             todoService.delete(todoItem);
             return "redirect:/";        
     }
+    
+    
+    @GetMapping("/edit/{id}")
+    public String showUpdatePage(@PathVariable("id") Long id, Model model){
+        todo todoItem = todoService
+                    .getById(id)
+                    .orElseThrow(()->new IllegalArgumentException("Todo Item not found !"));
+        
+        model.addAttribute("todo", todoItem);
+        return "edit-todo-item";
+    }
+    
+    
+    @PostMapping("/todo/{id}")
+    public String updateTodoItem(@PathVariable("id") Long id, @Valid todo todoItem, BindingResult result, Model model){
+                todo item = todoService
+                    .getById(id)
+                    .orElseThrow(()->new IllegalArgumentException("Todo Item not found !"));
+                
+                item.setIsComplete(todoItem.getIsComplete());
+                item.setDescription(todoItem.getDescription());
+                
+                todoService.save(item);
+                
+                return "redirect:/";
+    }
 }
